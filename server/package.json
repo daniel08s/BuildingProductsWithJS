@@ -12,5 +12,10 @@
     "experts"
   ],
   "author": "Daniel Sousa",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-preset-es2015-node": "^6.1.1",
+    "babel-preset-stage-0": "^6.24.1"
+  }
 }
