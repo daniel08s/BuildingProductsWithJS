@@ -35,7 +35,9 @@
     "eslint-plugin-import": "^2.8.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.5.1",
-    "express": "^4.16.2"
+    "express": "^4.16.2",
+    "supertest": "^3.0.0",
+    "tape": "^4.8.0"
   },
   "babel": {
     "presets": [
