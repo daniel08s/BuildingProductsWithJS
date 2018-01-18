@@ -1,4 +1,4 @@
-{
+module.exports = {
   "parser": "babel-eslint",
   "extends": "airbnb",
   "rules": {
@@ -12,6 +12,13 @@
       "arrays": "always-multiline",
       "objects": "always-multiline",
       "functions": "ignore"
+    }],
+    "import/no-extraneous-dependencies": [
+    "error", {
+       "devDependencies": true, 
+       "optionalDependencies": false, 
+       "peerDependencies": false, 
+       "packageDir": "./"
     }]
   }
-}
+};
