@@ -46,5 +46,7 @@
       "stage-0"
     ]
   },
-  "dependencies": {}
+  "dependencies": {
+    "body-parser": "^1.18.2"
+  }
 }
