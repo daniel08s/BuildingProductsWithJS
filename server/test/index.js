@@ -1,40 +1,8 @@
-// npm packages
-import test from 'tape';
-import request from 'supertest';
-
-// out packages
-import app from '../src/app';
-
-test('GET /', (t) => {
-  request(app)
-    .get('/')
-    .expect(200)
-    .expect('Content-Type', /text\/html/)
-    .end((err, res) => {
-      const expectedBody = 'Hello World!';
-      const actualBody = res.text;
-
-      t.error(err, 'No error');
-      t.equal(actualBody, expectedBody, 'Retrieve body');
-      t.end();
-    });
-});
-
-test('POST /login', (t) => {
-  request(app)
-    .post('/login')
-    .send({username: 'test', password: '123'})
-    .expect(200)
-    .expect('Content-Type', /json/)
-    .end((err, res) => {
-      const expectedBody = {
-        username: 'test',
-        id: 1,
-      };
-      const actualBody = res.body;
-
-      t.error(err, 'No error');
-      t.deepEqual(actualBody, expectedBody, 'Retrieve user');
-      t.end();
-    });
-});
+/* eslint global-require: 0 */
+// say we're testing to evade excessive logging
+// usage of process.env is workaround for issues with setting env vars in windows
+process.env.NODE_ENV = 'testing';
+// require babel require hook
+require('babel-core/register');
+// require and start main tests
+require('./main');
