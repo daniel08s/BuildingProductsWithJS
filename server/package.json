@@ -4,7 +4,7 @@
   "description": "Experts REST backend",
   "main": "index.js",
   "scripts": {
-    "start": "babel-node src/index.js",
+    "start": "node index.js",
     "eslint": "eslint src/",
     "lint": "eslint . --ext .js,.jsx",
     "test": "eslint src/ && babel-node test/"
@@ -30,13 +30,12 @@
     "babel-eslint": "^8.2.1",
     "babel-preset-es2015-node": "^6.1.1",
     "babel-preset-stage-0": "^6.24.1",
-    "eslint": "^4.15.0",
+    "eslint": "^4.16.0",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-plugin-import": "^2.8.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.5.1",
-    "express": "^4.16.2",
     "supertest": "^3.0.0",
     "tape": "^4.8.0"
   },
@@ -47,6 +46,9 @@
     ]
   },
   "dependencies": {
-    "body-parser": "^1.18.2"
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "morgan": "^1.9.0",
+    "winston": "^2.4.0"
   }
 }
