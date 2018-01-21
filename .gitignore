@@ -6,3 +6,4 @@ client/dist/
 coverage
 .vscode
 deploy/db
+server/.brackets.json
