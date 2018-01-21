@@ -7,3 +7,4 @@ coverage
 .vscode
 deploy/db
 server/.brackets.json
+startDB.bat
