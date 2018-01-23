@@ -1,6 +1,9 @@
 module.exports = {
   "parser": "babel-eslint",
   "extends": "airbnb",
+  "plugins": [
+    "babel"
+  ],
   "rules": {
     "object-curly-spacing": ["warn", "never"],
     "func-names": "off",
@@ -19,6 +22,8 @@ module.exports = {
        "optionalDependencies": false, 
        "peerDependencies": false, 
        "packageDir": "./"
-    }]
+    }],
+    "no-unused-expressions": 0,
+    "babel/no-unused-expressions": 2
   }
 };
