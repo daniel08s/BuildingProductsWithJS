@@ -41,23 +41,12 @@ app.get('/', (req, res) => {
   res.send('Hello World!');
 });
 
-// login method
-app.post('/login', (req, res) => {
-  const {username, password} = req.body;
-  if (username === 'test' && password === '123') {
-    res.send({username, id: 1});
-    return;
-  }
-
-  res.status(401).send({error: 'Incorrect username or password'});
-});
-
 // setup authentication routes
 setupAuthRoutes(app);
 
 // catch all unhandled errors
 app.use((err, req, res, next) => {
-  logger.error(err.stack);
+  logger.error('unhandled application error: ', err);
   res.status(500).send(err);
 });
 

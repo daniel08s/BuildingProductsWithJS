@@ -9,8 +9,8 @@ thinky.dbReady().then(() => {
   // start server
   app.listen(8080, function() {
     const addr = this.address();
-    const {host, port} = addr;
-    logger.info(`Experts server is listening at http://${host}:${port}`);
+    const {address, port} = addr;
+    logger.info(`Experts server is listening at http://${address}:${port}`);
   });
 });
 

@@ -22,16 +22,20 @@ export default (test) => {
       
         const decodedUser = jwt.verify(actualBody.token, authConfig.jwtSecret);
         delete decodedUser.iat;
+        
         t.equal(actualBody.user.login, 'test', 'Login matches request');
-        t.deepEqual(actualBody.user, decodedUser, 'User must match token')
+        t.deepEqual(actualBody.user, decodedUser, 'User must match token');
+      
+        app.set('token', actualBody.token);
+      
         t.end();
       });
   });
 
   test('Should fail to login with wrong password', (t) => {
     request(app)
-      .post('/api/register')
-      .send({login: 'test', password: 'aaa', passwordRepeat: 'aaa'})
+      .post('/api/login')
+      .send({login: 'test', password: 'aaa'})
       .expect(401)
       .expect('Content-Type', /json/)
       .end((err) => {
@@ -42,7 +46,7 @@ export default (test) => {
   
   test('Should fail to login with non-existant user', (t) => {
     request(app)
-      .post('/api/register')
+      .post('/api/login')
       .send({login: 'notregistered', password: 'aaa'})
       .expect(401)
       .expect('Content-Type', /json/)

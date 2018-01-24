@@ -1,6 +1,7 @@
 // npm packages
 import passport from 'passport';
 import {Strategy as LocalStrategy} from 'passport-local';
+// import {Strategy as JwtStrategy, ExtractJwt} from 'passport-jwt';
 
 // our packages
 import {User} from '../db';
