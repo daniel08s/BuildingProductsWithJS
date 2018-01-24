@@ -37,7 +37,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // test method
-app.get('/', (req, res) => {
+app.get('/', passport.authenticate('jwt', {session: false}), (req, res) => {
   res.send('Hello World!');
 });
 
