@@ -56,7 +56,7 @@ app.post('/login', (req, res) => {
 setupAuthRoutes(app);
 
 // catch all unhandled errors
-app.use((err, req, res) => {
+app.use((err, req, res, next) => {
   logger.error(err.stack);
   res.status(500).send(err);
 });
