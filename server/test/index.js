@@ -1,7 +1,7 @@
 /* eslint global-require: 0 */
 // say we're testing to evade excessive logging
 // usage of process.env is workaround for issues with setting env vars in windows
-// process.env.NODE_ENV = 'testing';
+process.env.NODE_ENV = 'testing';
 
 const spawn = require('child_process').spawn;
 
@@ -9,11 +9,9 @@ const spawn = require('child_process').spawn;
 require('babel-core/register');
 
 // reqlite instance
-const reqlite = spawn('reqlite');
+const reqliteServer = require('reqlite');
+const server = new ReqliteServer({silent: true});
 
-// wait for start
-reqlite.stderr.on('data', () => {
-  // require and start main tests
-  const startTests = require('./main').default;
-  startTests(reqlite);
-});
+// require and start main tests
+const startTests = require('./main').default;
+startTests(server);

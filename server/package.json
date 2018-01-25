@@ -10,7 +10,7 @@
     "db:rm": "docker rm expertsdb",
     "eslint": "eslint src/",
     "lint": "eslint . --ext .js,.jsx",
-    "test": "eslint src/ --fix && NODE_ENV=testing node test/index.js | tap-spec"
+    "test": "eslint src/ --fix && node test/index.js | tap-spec"
   },
   "keywords": [
     "rest",

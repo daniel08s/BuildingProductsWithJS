@@ -28,7 +28,7 @@ export default (reqlite) => {
     // close db connections
     test((t) => {
       setImmediate(() => r.getPoolMaster().drain());
-      reqlite.kill();
+      reqlite.stop();
       t.end();
     });
   });
