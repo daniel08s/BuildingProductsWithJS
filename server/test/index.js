@@ -3,15 +3,15 @@
 // usage of process.env is workaround for issues with setting env vars in windows
 process.env.NODE_ENV = 'testing';
 
-const spawn = require('child_process').spawn;
-
 // require babel require hook
 require('babel-core/register');
 
 // reqlite instance
-const reqliteServer = require('reqlite');
+const ReqliteServer = require('reqlite');
+
 const server = new ReqliteServer({silent: true});
 
 // require and start main tests
 const startTests = require('./main').default;
+
 startTests(server);

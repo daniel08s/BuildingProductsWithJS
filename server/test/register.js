@@ -21,7 +21,6 @@ export default (test) => {
       .post('/api/register')
       .send({login: 'test', password: 'aaa', passwordRepeat: 'aaa'})
       .expect(403)
-      .expect('Content-Type', /json/)
       .end((err, res) => {
         const expectedBody = {error: 'User is already registered!'};
         const actualBody = res.body;

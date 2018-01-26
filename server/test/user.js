@@ -1,8 +1,10 @@
 // npm packages
 import request from 'supertest';
+// import jwt from 'jsonwebtoken';
 
 // our packages
 import app from '../src/app';
+// import {auth as authConfig} from '../config';
 
 export default (test) => {
   test('GET /api/user/:id', (t) => {
@@ -13,10 +15,10 @@ export default (test) => {
       .expect('Content-Type', /json/)
       .end((err, res) => {
         const expectedBody = app.get('user');
-        const actualBody = res.text;
+        const actualBody = res.body;
 
         t.error(err, 'No error');
-        t.equal(actualBody, expectedBody, 'Retrieve body');
+        t.deepEqual(actualBody, expectedBody, 'Retrieve user');
         t.end();
       });
   });

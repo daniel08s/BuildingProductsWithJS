@@ -11,7 +11,7 @@ export default (test) => {
       .expect(200)
       .expect('Content-Type', /text\/html/)
       .end((err, res) => {
-        const expectedBody = 'Hello World!';
+        const expectedBody = 'Hello world!';
         const actualBody = res.text;
 
         t.error(err, 'No error');

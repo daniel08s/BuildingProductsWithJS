@@ -3,8 +3,8 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
 import session from 'express-session';
-import morgan from 'morgan';
 import passport from 'passport';
+import morgan from 'morgan';
 
 // our packages
 import {logger} from './util';
@@ -38,8 +38,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // test method
-app.get('/', passport.authenticate('jwt', {session: false}), (req, res) => {
-  res.send('Hello World!');
+app.get('/', (req, res) => {
+  res.send('Hello world!');
 });
 
 // setup authentication routes
