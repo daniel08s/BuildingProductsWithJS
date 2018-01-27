@@ -11,13 +11,8 @@ import {auth as authConfig} from '../../config';
 // define serialize and deserialize functions
 passport.serializeUser((user, done) => done(null, user.id));
 passport.deserializeUser(async(id, done) => {
-  let user = null;
-  try {
-    user = await User.get(id).run();
-  } catch (e) {
-    done(e, false);
-    return;
-  }
+  const user = await User.get(id).run();
+  delete user.password;
   done(null, user);
 });
 
@@ -36,6 +31,7 @@ passport.use(new LocalStrategy({usernameField: 'login'}, async(login, password, 
     return done(null, false);
   }
   // return user if successful
+  delete user.password;
   return done(null, user);
 }));
 
@@ -45,11 +41,12 @@ const jwtOpts = {
   secretOrKey: authConfig.jwtSecret,
 };
 passport.use(new JwtStrategy(jwtOpts, async(payload, done) => {
-  const user = await User.get(payload.id);
+  const user = await User.get(payload.id).run();
   // check if user exists
   if (!user) {
     return done(null, false);
   }
   // return user if successful
+  delete user.password;
   return done(null, user);
 }));
