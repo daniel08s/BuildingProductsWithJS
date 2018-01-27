@@ -6,6 +6,7 @@ import {thinky} from './db';
 // wait for DB to initialize
 thinky.dbReady().then(() => {
   logger.info('Database ready, starting server...');
+
   // start server
   app.listen(8080, function() {
     const addr = this.address();
