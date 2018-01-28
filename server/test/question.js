@@ -85,9 +85,9 @@ export default (test) => {
       });
   });
 
-  test('GET /api/question/:owner', (t) => {
+  test('GET /api/question/me', (t) => {
     request(app)
-      .get(`/api/question/${app.get('user').id}`)
+      .get(`/api/question/me`)
       .set('x-access-token', app.get('token'))
       .expect(200)
       .expect('Content-Type', /json/)
