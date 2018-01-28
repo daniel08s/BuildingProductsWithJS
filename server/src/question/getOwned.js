@@ -10,8 +10,7 @@ export default (app) => {
     // find all questions from user
     let questions = [];
     try {
-      questions = await Question.filter(req.params.owner)
-        .run();
+      questions = await Question.filter(req.params.owner).run();
       res.send(questions);
     } catch (e) {
       res.status(400).send({error: 'User does not have active questions'});
