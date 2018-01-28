@@ -1,6 +1,6 @@
 // our packages
 // import get from './get';
-import create from './get';
+import create from './create';
 // import update from './update';
 // import remove from './remove';
 

@@ -6,7 +6,7 @@ import {Question} from '../db';
 import {asyncRequest} from '../util';
 
 export default (app) => {
-  app.post('/api/question', passport.authenticate('jwt', {session: false}, asyncRequest(async(req, res) => {
+  app.post('/api/question', passport.authenticate('jwt', {session: false}), asyncRequest(async(req, res) => {
     // get user input
     const {text, expirationDate} = req.body;
 

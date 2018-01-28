@@ -9,4 +9,5 @@ export const Question = thinky.createModel('Question', {
     user: thinky.type.string().required(),
     answer: thinky.type.string().required(),
   })),
+  owner: thinky.type.string().required(),
 });
