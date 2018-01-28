@@ -11,7 +11,7 @@ export default (test) => {
     request(app)
       .post('/api/question')
       .set('x-access-token', app.get('token'))
-      .send({text: 'What is the question?', expirationDate: moment().add(1, 'days')})
+      .send({text: 'What is the question?', expirationDate: moment().add(1, 'days').toDate()})
       .expect(200)
       .end((err) => {
         t.error(err, 'No error');
@@ -42,6 +42,7 @@ export default (test) => {
 
         res.body.forEach((actualBody) => {
           t.equal(actualBody.owner, app.get('user').id, 'Question owner matches user');
+          t.ok(moment(actualBody))
         });
 
         t.end();
