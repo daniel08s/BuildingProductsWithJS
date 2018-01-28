@@ -168,7 +168,7 @@ export default (test) => {
         t.end();
       });
   });
-  
+
   test('Should login with updated username and password', (t) => {
     request(app)
       .post('/api/login')

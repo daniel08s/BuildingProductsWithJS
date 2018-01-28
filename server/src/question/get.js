@@ -11,7 +11,6 @@ export default (app) => {
     let questions = [];
     try {
       questions = await Question.filter(req.params.owner)
-        .limit(1)
         .run();
       res.send(questions);
     } catch (e) {
