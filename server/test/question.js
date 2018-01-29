@@ -58,9 +58,36 @@ export default (test) => {
 
         t.error(err, 'No error');
         t.equal(actualBody.text, sharedInput.text, 'Retrieve same question text');
-        t.ok(moment(actualBody.expirationDate).isSame(sharedInput.expirationDate), 'Retrieve same question expiration date');
+        t.ok(
+          moment(actualBody.expirationDate).isSame(sharedInput.expirationDate),
+          'Retrieve same question expiration date'
+        );
         t.ok(moment(actualBody.creationDate).isValid(), 'Creation date must be valid');
         t.equal(actualBody.owner, app.get('user').id, 'Question owner matches user');
+
+        app.set('question', actualBody);
+
+        t.end();
+      });
+  });
+
+  test('GET /api/question/:id - Should get created question ', (t) => {
+    request(app)
+      .get(`/api/question/${app.get('question').id}`)
+      .set('x-access-token', app.get('token'))
+      .expect(200)
+      .expect('Content-Type', /json/)
+      .end((err, res) => {
+        const actualBody = res.body;
+
+        t.error(err, 'No error');
+        t.deepEqual(actualBody, app.get('question'), 'Retrieve same question');
+        t.equal(actualBody.text, sharedInput.text, 'Retrieve same question text');
+        t.ok(
+          moment(actualBody.expirationDate).isSame(sharedInput.expirationDate),
+          'Retrieve same question expiration date'
+        );
+
         t.end();
       });
   });
@@ -78,20 +105,28 @@ export default (test) => {
 
         t.error(err, 'No error');
         t.equal(actualBody.text, input.text, 'Retrieve same question text');
-        t.ok(moment(actualBody.expirationDate).isSame(input.expirationDate), 'Retrieve same question expiration date');
+        t.ok(
+          moment(actualBody.expirationDate).isSame(input.expirationDate),
+          'Retrieve same question expiration date'
+        );
         t.ok(moment(actualBody.creationDate).isValid(), 'Creation date must be valid');
         t.equal(actualBody.owner, app.get('user').id, 'Question owner must match user');
+
+        app.set('question', actualBody);
+
         t.end();
       });
   });
 
-  test('GET /api/question/me', (t) => {
+  test('GET /api/question/me/:owner', (t) => {
     request(app)
-      .get(`/api/question/me`)
+      .get(`/api/question/me/${app.get('user').id}`)
       .set('x-access-token', app.get('token'))
       .expect(200)
       .expect('Content-Type', /json/)
       .end((err, res) => {
+        const actualBody = res.body;
+      
         t.error(err, 'No error');
 
         res.body.forEach((actualBody) => {
