@@ -268,6 +268,7 @@ export default (test) => {
         t.end();
       });
   });
+  
   test('POST /api/question/:id - Should update question with new expirationDate', (t) => {
     request(app)
       .post(`/api/question/${app.get('question').id}`)
@@ -278,7 +279,7 @@ export default (test) => {
       .end((err, res) => {
         const expectedBody = {
           ...app.get('question'),
-          ...updatedInput,
+          expirationDate: updatedInput.expirationDate,
         };
         const actualBody = res.body;
 
@@ -295,6 +296,41 @@ export default (test) => {
         t.ok(moment(actualDate).isSame(expectedDate), 'Retrieve same dates');
 
         app.set('question', {...app.get('question'), expirationDate: updatedInput.expirationDate});
+
+        t.end();
+      });
+  });
+  
+  test('DELETE /api/question/:id - Should not delete question from another user', (t) => {
+    request(app)
+      .delete(`/api/question/${app.get('other-question').id}`)
+      .set('x-access-token', app.get('token'))
+      .expect(403)
+      .expect('Content-Type', /json/)
+      .end((err, res) => {
+        const expectedBody = {error: 'Not enough permissions to delete other user profile!'};
+        const actualBody = res.body;
+
+        t.error(err, 'No error');
+        t.deepEqual(actualBody, expectedBody, 'Retrieve updated question');
+
+        t.end();
+      });
+  });
+  
+  test('DELETE /api/question/:id - Should delete lastest question from user', (t) => {
+    request(app)
+      .delete(`/api/question/${app.get('question').id}`)
+      .set('x-access-token', app.get('token'))
+      .expect(204)
+      .end((err, res) => {
+        const actualBody = res.body;
+
+        t.error(err, 'No error');
+        t.ok(actualBody, 'Retrieve data');
+
+        // delete question from app
+        app.delete('question');
 
         t.end();
       });

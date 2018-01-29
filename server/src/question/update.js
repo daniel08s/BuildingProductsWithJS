@@ -56,7 +56,7 @@ export default (app) => {
       question.text = text;
     }
     if (expirationDate) {
-      question.expirationDate = expirationDate;
+      question.expirationDate = moment(expirationDate, moment.ISO_8601).toDate();
     }
 
     // save updated question

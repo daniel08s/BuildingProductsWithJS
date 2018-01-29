@@ -2,11 +2,11 @@
 import get from './get';
 import create from './create';
 import update from './update';
-// import remove from './remove';
+import deleteQuestion from './delete';
 
 export default (app) => {
   get(app);
   create(app);
   update(app);
-//  remove(app);
+  deleteQuestion(app);
 };
