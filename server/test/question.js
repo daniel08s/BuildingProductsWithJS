@@ -268,7 +268,7 @@ export default (test) => {
         t.end();
       });
   });
-  
+
   test('POST /api/question/:id - Should update question with new expirationDate', (t) => {
     request(app)
       .post(`/api/question/${app.get('question').id}`)
@@ -300,7 +300,7 @@ export default (test) => {
         t.end();
       });
   });
-  
+
   test('DELETE /api/question/:id - Should not delete question from another user', (t) => {
     request(app)
       .delete(`/api/question/${app.get('other-question').id}`)
@@ -312,27 +312,38 @@ export default (test) => {
         const actualBody = res.body;
 
         t.error(err, 'No error');
-        t.deepEqual(actualBody, expectedBody, 'Retrieve updated question');
+        t.deepEqual(actualBody, expectedBody, 'Retrieve same question');
 
         t.end();
       });
   });
-  
+
   test('DELETE /api/question/:id - Should delete lastest question from user', (t) => {
     request(app)
       .delete(`/api/question/${app.get('question').id}`)
       .set('x-access-token', app.get('token'))
       .expect(204)
       .end((err, res) => {
-        const actualBody = res.body;
-
+        // compare
         t.error(err, 'No error');
-        t.ok(actualBody, 'Retrieve data');
 
-        // delete question from app
-        app.delete('question');
+        // try to get it and expect to fail
+        t.test('  - GET /api/question/:id - should fail to get deleted question', (st) => {
+          request(app)
+            .get(`/api/question/${app.get('question').id}`)
+            .set('x-access-token', app.get('token'))
+            .expect(400)
+            .end((e) => {
+              const actualBody = res.body;
 
-        t.end();
+              st.error(e, 'No error');
+              st.ok(actualBody.error.indexOf('DocumentNotFoundError') !== -1, 'Retrieve correct error');
+              st.end();
+
+              // end delete test
+              t.end();
+            });
+        });
       });
   });
 };
