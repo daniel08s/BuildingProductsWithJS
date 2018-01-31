@@ -24,6 +24,7 @@ module.exports = {
        "packageDir": "./"
     }],
     "no-unused-expressions": 0,
-    "babel/no-unused-expressions": 2
+    "babel/no-unused-expressions": 2,
+    "import/prefer-default-export": "off"
   }
 };
