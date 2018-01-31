@@ -333,8 +333,8 @@ export default (test) => {
             .get(`/api/question/${app.get('question').id}`)
             .set('x-access-token', app.get('token'))
             .expect(400)
-            .end((e) => {
-              const actualBody = res.body;
+            .end((e, resp) => {
+              const actualBody = resp.body;
 
               st.error(e, 'No error');
               st.ok(actualBody.error.indexOf('DocumentNotFoundError') !== -1, 'Retrieve correct error');
