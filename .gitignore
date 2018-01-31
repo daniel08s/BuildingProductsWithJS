@@ -8,3 +8,4 @@ coverage
 deploy/db
 server/.brackets.json
 startDB.bat
++npm-debug.log
