@@ -1,11 +1,14 @@
-export const db = {
-  host: 'localhost',
-  port: 28015,
+exports.db = {
+  host: process.env.EXPERTS_DB_URL || 'localhost',
+  port: process.env.EXPERTS_DB_PORT || 28015,
   db: 'expertsdb',
 };
 
-export const auth = {
-  passwordSalt: 'sdfkmkpfikj409885u"!ujjQW!Y9yjN!"h)/y123pL´1i91kpj!y8',
-  sessionSecret: 'Cm0jPU1#&0d%uT!hWGws^KAvdBW#GX%xpkro2NulA6zmnJInLL8*41B$gmUL3*rg',
-  jwtSecret: '^OITiuYZVNryIre@y1Z#vzOj$BbZG25dhyul8c56etAEtITEwR86nLtXhNYlyrTs',
+exports.auth = {
+  passwordSalt: process.env.EXPERTS_AUTH_PASSALT ||
+    '%0BPgs00dfvwY24zcW1EnsMiKr3hf@Mn%r6JMLS8Uyv8$NHB2*VvZoYDB6v9!nL!',
+  sessionSecret: process.env.EXPERTS_AUTH_SESSECRET ||
+    '#7DlQUP1GRh&yDJvO2gQYTHx@40yLd&^@BO!T&ZdKMO%ngHULBYbm3I@HJ5DE#2K',
+  jwtSecret: process.env.EXPERTS_AUTH_JWTSECRET ||
+    'JEdxGdcdsFjYsXQ9Szy&jjaYaqH8*lxlTDvY$nFRc135v!IP6UocfWoKfEs&OrUo',
 };
