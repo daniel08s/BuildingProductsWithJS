@@ -34,4 +34,4 @@ release-server:
     - docker tag $SERVER_TEST_IMAGE $SERVER_RELEASE_IMAGE
     - docker push $SERVER_RELEASE_IMAGE
   only:
-- master
+    - master
