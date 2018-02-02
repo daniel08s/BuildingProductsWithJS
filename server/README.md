@@ -4,7 +4,7 @@
 
 This is a simple REST API server that provides CRUD capabilities for the experts polling use-case.
 The server is build using [Express.js](https://expressjs.com/) as a server and [Passport.js](http://passportjs.org/) as authentication middleware with code compiled from ES2015+ by [babel](http://babeljs.io/)
-It relies on [RethinkDB](https://www.rethinkdb.com/) as a database for storing data.
+It relies on [RethinkDB](https://www.rethinkdb.com/) as a database for storing data and [Thinky](http://justonepixel.com/thinky/) to model and access the database.
 
 ## Usage
 
