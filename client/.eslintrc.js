@@ -28,6 +28,11 @@ module.exports = {
     }],
     "no-unused-expressions": 0,
     "babel/no-unused-expressions": 2,
-    "react/jsx-filename-extension": "off"
+    "react/jsx-filename-extension": "off",
+    "jsx-a11y/anchor-is-valid": [ "error", {
+      "components": [ "Link" ],
+      "specialLink": [ "hrefLeft", "hrefRight", "to" ],
+      "aspects": [ "noHref", "invalidHref", "preferButton" ]
+    }]
   }
 };
