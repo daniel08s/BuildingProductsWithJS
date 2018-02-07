@@ -9,7 +9,7 @@ import NotFound from '../notfound';
 
 export default () => (
   <Router>
-    <div>
+    <div className="jumbotron">
       <Switch>
         <Route exact path="/" component={Home} />
         <Route path="/other" component={Other} />

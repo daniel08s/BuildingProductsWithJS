@@ -10,9 +10,9 @@ export default class Home extends React.Component {
   
   render() {
     return (
-      <div>
+      <div className="container">
         <h1>Hello {this.state.world}!</h1>
-        <Link to="/other">other</Link>
+        <Link to="/other" className="btn btn-primary btn-lg">other</Link>
       </div>
     );
   }
