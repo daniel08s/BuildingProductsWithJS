@@ -1,4 +1,3 @@
-
 import * as ActionTypes from '../actionTypes';
 
 const initialState = {world: '...'};
