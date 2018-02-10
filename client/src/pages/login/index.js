@@ -1,5 +1,5 @@
 import React from 'react';
 
 export default () => (
-  <h1>Hello other page</h1>
+  <h1>Login screen</h1>
 );
