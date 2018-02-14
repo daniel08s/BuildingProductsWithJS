@@ -12,6 +12,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 // our packages
 import App from './app';
 import store from './store';
+import {requireAuth} from './util';
 
 // our pages
 import Home from './pages/home';
@@ -26,7 +27,7 @@ ReactDOM.render(
   <Provider store={store}>
     <Router history={history}>
       <Route path="/" component={App}>
-        <IndexRoute component={Home} />
+        <IndexRoute component={Home} onEnter={requireAuth} />
         <Route path="login" component={Login} />
         <Route path="*" component={NotFound} />
       </Route>
