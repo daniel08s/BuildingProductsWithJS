@@ -2,7 +2,7 @@
 import React from 'react';
 
 export default ({children}) => (
-  <div className="jumbotron">
+  <div className="text-center">
     {children}
   </div>
 );

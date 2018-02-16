@@ -16,7 +16,7 @@ const Home = ({onClick, world}) => (
   <div className="container">
     <h1>Hello {world}!</h1>
     <button onClick={onClick} className="btn btn-primary btn-lg">Click me!</button>
-    <Link to="/other" className="btn btn-link">other</Link>
+    <Link to="/login" className="btn btn-link">Login</Link>
   </div>
 );
 
