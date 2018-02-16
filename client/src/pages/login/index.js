@@ -1,6 +1,8 @@
 // npm packages
 import React from 'react';
+import {Link} from 'react-router';
 import {connect} from 'react-redux';
+import {push} from 'react-router-redux';
 
 // our packages
 import {loginAction} from '../../store/actions';
@@ -14,10 +16,11 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   onLoginClick: params => dispatch(loginAction(params)),
+  navToHome: () => dispatch(push('/')),
 });
 
 
-const Login = ({onLoginClick}) => {
+const Login = ({onLoginClick, navToHome, token}) => {
   let usernameInput;
   let passwordInput;
   let rememberInput;
@@ -31,6 +34,11 @@ const Login = ({onLoginClick}) => {
       remember: rememberInput.checked,
     });
   };
+
+  if (token) {
+    // TODO: figure out a better way to do nav
+    setImmediate(() => navToHome());
+  }
   
   return (
     <form className="form-signin">
@@ -70,6 +78,7 @@ const Login = ({onLoginClick}) => {
         onClick={handleClick}
       >Login
       </button>
+      <p className="h5 font-weight-normal">Not registered? <Link to="/register">Click here.</Link></p>
       <p className="mt-5 mb-3 text-muted">&copy; 2017-2018</p>
     </form>
   );

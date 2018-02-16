@@ -7,6 +7,6 @@ export const auth = action$ => action$
     .ajax.post('http://localhost:8080/api/login', payload)
     .map(res => res.response)
     .map(response => ({
-      type: ActionTypes.LOGIN_SUCCESSS,
+      type: ActionTypes.LOGIN_SUCCESS,
       payload: response,
     })));
