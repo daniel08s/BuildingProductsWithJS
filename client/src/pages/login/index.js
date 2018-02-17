@@ -45,7 +45,7 @@ const Login = ({onLoginClick, navToHome, token}) => {
       <h1 className="h1 mb-1 font-weight-normal">Experts portal</h1>
       <p className="h3 mb-3 font-weight-normal">Please sign in</p>
 
-      <label htmlFor="inputUsername" className="sr-only">Email address</label>
+      <label htmlFor="inputUsername" className="sr-only">Username</label>
       <input
         type="text"
         id="inputUsername"
