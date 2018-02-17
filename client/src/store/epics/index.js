@@ -1,7 +1,10 @@
-import {auth} from './auth';
+import {login, register} from './auth';
 import {helloWorld} from './helloWorld';
 
 export default [
-  auth,
+  // auth
+  login,
+  register,
+  // hello world
   helloWorld,
 ];
