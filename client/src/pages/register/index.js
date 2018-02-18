@@ -6,12 +6,14 @@ import {push} from 'react-router-redux';
 
 // our packages
 import {registerAction} from '../../store/actions';
+import {registerErrorToMessage} from '../../util';
 
 // styles
 import '../../css/signin.css';
 
 const mapStateToProps = state => ({
   redirectToLogin: state.auth.redirectToLogin,
+  error: state.auth.error,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -19,7 +21,7 @@ const mapDispatchToProps = dispatch => ({
   navToLogin: () => dispatch(push('/login')),
 });
 
-const Register = ({onRegisterClick, navToLogin, redirectToLogin}) => {
+const Register = ({onRegisterClick, navToLogin, redirectToLogin, error}) => {
   let usernameInput;
   let passwordInput;
   let passwordRepeatInput;
@@ -43,6 +45,10 @@ const Register = ({onRegisterClick, navToLogin, redirectToLogin}) => {
     <form className="form-signin">
       <h1 className="h1 mb-3 font-weight-normal">Experts portal</h1>
       <p className="h4 mb-3 font-weight-normal">Please fill the form to register</p>
+
+      {error ? (
+        <div className="alert alert-danger" role="alert">{registerErrorToMessage(error)}</div>
+      ) : ''}
 
       <label htmlFor="inputUsername" className="sr-only" />
       <input
