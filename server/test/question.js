@@ -212,6 +212,36 @@ export default (test) => {
       });
   });
 
+  test('GET /api/question - get latest questions', (t) => {
+    request(app)
+      .get('/api/question')
+      .set('x-access-token', app.get('token'))
+      .expect(200)
+      .expect('Content-Type', /json/)
+      .end((err, res) => {
+        const actualBody = res.body;
+
+        t.error(err, 'No error');
+        t.equal(actualBody.length, 3, 'Retrieve 3 questions');
+        t.equal(actualBody[0].text, sharedInputOther.text, 'Retrieve same question text');
+        t.equal(actualBody[0].owner, app.get('other-user').id, 'Question belongs to correct user');
+        t.ok(moment(actualBody[0].creationDate).isValid(), 'Creation date must be valid');
+        t.ok(
+          moment(actualBody[0].expirationDate).isSame(sharedInputOther.expirationDate),
+          'Retrieve same question expirationDate'
+        );
+        t.equal(actualBody[2].text, sharedInput.text, 'Retrieve same question text');
+        t.equal(actualBody[2].owner, app.get('user').id, 'Question belongs to correct user');
+        t.ok(moment(actualBody[2].creationDate).isValid(), 'Creation date must be valid');
+        t.ok(
+          moment(actualBody[2].expirationDate).isSame(sharedInput.expirationDate),
+          'Retrieve same question expirationDate'
+        );
+
+        t.end();
+      });
+  });
+
   test('POST /api/question/:id - Should not update question from another user', (t) => {
     request(app)
       .post(`/api/question/${app.get('other-question').id}`)
@@ -323,7 +353,7 @@ export default (test) => {
       .delete(`/api/question/${app.get('question').id}`)
       .set('x-access-token', app.get('token'))
       .expect(204)
-      .end((err, res) => {
+      .end((err) => {
         // compare
         t.error(err, 'No error');
 
