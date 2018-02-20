@@ -6,14 +6,12 @@ import {push} from 'react-router-redux';
 
 // our packages
 import {loginAction} from '../../store/actions';
-import {loginErrorToMessage} from '../../util';
 
 // styles
 import '../../css/signin.css';
 
 const mapStateToProps = state => ({
   token: state.auth.token,
-  error: state.auth.error,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -21,7 +19,7 @@ const mapDispatchToProps = dispatch => ({
   navToHome: () => dispatch(push('/')),
 });
 
-const Login = ({onLoginClick, navToHome, token, error}) => {
+const Login = ({onLoginClick, navToHome, token}) => {
   let usernameInput;
   let passwordInput;
   let rememberInput;
@@ -45,10 +43,6 @@ const Login = ({onLoginClick, navToHome, token, error}) => {
     <form className="form-signin">
       <h1 className="h1 mb-1 font-weight-normal">Experts portal</h1>
       <p className="h3 mb-3 font-weight-normal">Please sign in</p>
-
-      {error ? (
-        <div className="alert alert-danger" role="alert">{loginErrorToMessage(error)}</div>
-      ) : ''}
 
       <label htmlFor="inputUsername" className="sr-only">Username</label>
       <input
