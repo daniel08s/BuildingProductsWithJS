@@ -5,10 +5,11 @@ import {Notifications} from '../notifications';
 
 const style = {
   popup: {
-    position: 'fixed',
+    position: 'absolute',
     width: '100%',
     maxWidth: '500px',
-    marginLeft: '-8.25%',
+    bottom: '25px',
+    right: '17%',
   },
 };
 
