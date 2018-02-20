@@ -31,7 +31,7 @@ export const login = action$ => action$
       payload: response,
     }))
     .concat(Observable.of(Actions.addNotificationAction({
-      text: 'Login success',
+      text: 'Login successful!',
       alertType: 'info',
     })))
     .catch(error => Observable.of(
@@ -55,7 +55,7 @@ export const register = action$ => action$
       payload: response,
     }))
     .concat(Observable.of(Actions.addNotificationAction({
-      text: 'Register success',
+      text: 'Registration successful!',
       alertType: 'info',
     })))
     .catch(error => Observable.of(
