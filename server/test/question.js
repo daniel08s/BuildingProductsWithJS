@@ -47,7 +47,7 @@ export default (test) => {
       });
   });
 
-   test('GET /api/question - should get empty latest questions', (t) => {
+  test('GET /api/question - should get empty latest questions', (t) => {
     request(app)
       .get('/api/question')
       .set('x-access-token', app.get('token'))
