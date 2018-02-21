@@ -47,6 +47,21 @@ export default (test) => {
       });
   });
 
+   test('GET /api/question - should get empty latest questions', (t) => {
+    request(app)
+      .get('/api/question')
+      .set('x-access-token', app.get('token'))
+      .expect(200)
+      .expect('Content-Type', /json/)
+      .end((err, res) => {
+        const actualBody = res.body;
+
+        t.error(err, 'No error');
+        t.equal(actualBody.length, 0, 'Retrieve 0 questions');
+
+        t.end();
+      });
+  });
 
   test('POST /api/question - Should create a new question', (t) => {
     request(app)
