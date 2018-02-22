@@ -109,6 +109,28 @@ export default (test) => {
       });
   });
 
+  test('POST /api/question/:id/answer - Answer question', (t) => {
+    const answer = 'test answer';
+
+    request(app)
+      .post(`/api/question/${app.get('question').id}/answer`)
+      .set('x-access-token', app.get('token'))
+      .send({answer: 'test answer'})
+      .expect(200)
+      .expect('Content-Type', /json/)
+      .end((err, res) => {
+        const actualBody = res.body;
+
+        t.error(err, 'No error');
+        t.equal(actualBody.answers.length, 1, 'Retrieve exactly 1 answer');
+        t.equal(actualBody.answers[0].answer, answer, 'Retrieve same answer');
+
+        app.set('question', actualBody);
+
+        t.end();
+      });
+  });
+
   test('POST /api/question/:id - Should not update question without text', (t) => {
     request(app)
       .post('/api/question/{app.get(\'question\').id}')
