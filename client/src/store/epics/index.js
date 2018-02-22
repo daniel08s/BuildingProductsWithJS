@@ -1,5 +1,6 @@
 import {login, register} from './auth';
 import {helloWorld} from './helloWorld';
+import {getAllQuestions} from './questions';
 
 export default [
   // auth
@@ -7,4 +8,6 @@ export default [
   register,
   // hello world
   helloWorld,
+  // questions
+  getAllQuestions,
 ];
