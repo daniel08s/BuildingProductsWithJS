@@ -5,7 +5,7 @@ import {Link} from 'react-router';
 import {connect} from 'react-redux';
 
 // our packages
-import {getAllQuestions} from '../../store/actions';
+import {getAllQuestions, answerQuestion} from '../../store/actions';
 import Question from '../../components/question';
 
 const mapStateToProps = state => ({
@@ -14,9 +14,10 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   fetchQuestions: _.once(() => dispatch(getAllQuestions())),
+  doAnswer: payload => dispatch(answerQuestion(payload)),
 });
 
-const Home = ({fetchQuestions, questions}) => {
+const Home = ({fetchQuestions, doAnswer, questions}) => {
   fetchQuestions();
 
   return (
@@ -40,7 +41,7 @@ const Home = ({fetchQuestions, questions}) => {
 
       <div className="container">
         {questions.map(question => (
-          <Question key={question.id} question={question} />
+          <Question key={question.id} question={question} onAnswer={doAnswer} />
         ))}
       </div>
     </div>
