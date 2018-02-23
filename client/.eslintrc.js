@@ -33,6 +33,7 @@ module.exports = {
       "components": [ "Link" ],
       "specialLink": [ "hrefLeft", "hrefRight", "to" ],
       "aspects": [ "noHref", "invalidHref", "preferButton" ]
-    }]
+    }],
+    "no-confusing-arrow": ["error", {"allowParens": false}
   }
 };

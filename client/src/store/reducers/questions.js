@@ -23,11 +23,10 @@ export const questions = (state = initialState, action) => {
         error: action.payload.error,
       };
     // answer questions logic
-    case ActionTypes.ANSWER_QUESTION_SUCCESS:
-      state.questions[ // eslint-disable-line no-param-reassign
-        state.questions.findIndex(q => q.id === action.payload.id)
-      ] = action.payload;
-      return state;
+    case ActionTypes.ANSWER_QUESTION_SUCCESS: {
+      const newQuestions = state.questions.map(q => (q.id === action.payload.id ? action.payload : q));
+      return {...state, questions: newQuestions};
+    }
     default:
       return state;
   }

@@ -7,6 +7,7 @@ export default ({question, onAnswer}) => {
     e.preventDefault();
 
     onAnswer({question, answer: answerInput.value});
+    answerInput.value = '';
 
     return false;
   };
