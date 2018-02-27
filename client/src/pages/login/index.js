@@ -8,7 +8,7 @@ import {push} from 'react-router-redux';
 import {loginAction} from '../../store/actions';
 
 // styles
-import '../../css/signin.css';
+import styles from '../../css/signin.css';
 
 const mapStateToProps = state => ({
   token: state.auth.token,
@@ -40,7 +40,7 @@ const Login = ({onLoginClick, navToHome, token}) => {
   }
   
   return (
-    <form className="form-signin">
+    <form className={styles.formSignin}>
       <h1 className="h1 mb-1 font-weight-normal">Experts portal</h1>
       <p className="h3 mb-3 font-weight-normal">Please sign in</p>
 
