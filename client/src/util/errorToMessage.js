@@ -6,7 +6,7 @@ export const loginErrorToMessage = (error) => {
   return error.message;
 };
 
-export const registerErrorToMessage = (error) => {
+export const genericErrorToMessage = (error) => {
   if (error.response && error.response.error) {
     return error.response.error;
   }

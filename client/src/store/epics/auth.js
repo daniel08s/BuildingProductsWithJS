@@ -1,7 +1,7 @@
 import {Observable} from 'rxjs/Observable';
 import * as ActionTypes from '../actionTypes';
 import * as Actions from '../actions';
-import {loginErrorToMessage, registerErrorToMessage} from '../../util';
+import {loginErrorToMessage, genericErrorToMessage} from '../../util';
 
 // ASCII diagram for Rx Streams (see: https://gist.github.com/staltz/868e7e9bc2a7b8c1f754)
 
@@ -65,5 +65,5 @@ export const register = action$ => action$
           error,
         },
       },
-      Actions.addNotificationAction({text: registerErrorToMessage(error), alertType: 'danger'}),
+      Actions.addNotificationAction({text: genericErrorToMessage(error), alertType: 'danger'}),
     )));

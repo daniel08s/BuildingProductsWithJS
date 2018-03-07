@@ -31,7 +31,7 @@ const Home = ({fetchQuestions, doAnswer, questions}) => {
 
         <ul className="nav navbar-nav">
           <li>
-            <a>Browse questions</a>
+            <a><b>Browse questions</b></a>
           </li>
           <li>
             <Link to="/create">Create new question</Link>
