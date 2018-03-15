@@ -35,5 +35,6 @@ module.exports = {
       "aspects": [ "noHref", "invalidHref", "preferButton" ]
     }],
     "no-confusing-arrow": ["error", {"allowParens": false}],
+    "jsx-a11y/anchor-has-content": ["error"],
   }
 };
