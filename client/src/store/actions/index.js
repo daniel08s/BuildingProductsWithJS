@@ -4,6 +4,7 @@ export const helloWorldAction = () => ({
   type: ActionTypes.HELLO_WORLD,
 });
 
+// auth actions
 export const loginAction = payload => ({
   type: ActionTypes.DO_LOGIN,
   payload,
@@ -14,6 +15,7 @@ export const registerAction = payload => ({
   payload,
 });
 
+// notification action
 let nextNotificationId = 0;
 
 /**
@@ -39,6 +41,7 @@ export const removeNotificationAction = notificationId => ({
   payload: {notificationId},
 });
 
+// question actions
 export const getAllQuestions = () => ({
   type: ActionTypes.GET_ALL_QUESTIONS,
 });
@@ -50,5 +53,11 @@ export const answerQuestion = payload => ({
 
 export const createQuestion = payload => ({
   type: ActionTypes.CREATE_QUESTION,
+  payload,
+});
+
+// user actions
+export const getUser = payload => ({
+  type: ActionTypes.GET_USER,
   payload,
 });

@@ -6,19 +6,20 @@ import moment from 'moment';
 
 // our packages
 import {createQuestion} from '../../store/actions';
+import Navbar from '../../components/navbar';
 
 // styles
 import styles from '../../css/mystyle.css';
 
 const mapStateToProps = state => ({
-//  questions: state.questions.questions,
+  user: state.auth.user,
 });
 
 const mapDispatchToProps = dispatch => ({
   doCreateQuestion: payload => dispatch(createQuestion(payload)),
 });
 
-const Create = ({doCreateQuestion}) => {
+const Create = ({doCreateQuestion, user}) => {
   let questionText;
   let questionDate;
 
@@ -35,22 +36,7 @@ const Create = ({doCreateQuestion}) => {
 
   return (
     <div>
-      <nav className="navbar navbar-default">
-        <div className="container-fluid">
-          <div className="navbar-header">
-            <Link to="/" className="navbar-brand">Home</Link>
-          </div>
-        </div>
-
-        <ul className="nav navbar-nav">
-          <li>
-            <Link to="/">Browse questions</Link>
-          </li>
-          <li>
-            <a><b>Create new question</b></a>
-          </li>
-        </ul>
-      </nav>
+      <Navbar user={user} current={'/create'} />
 
       <div className="container">
         <form className={styles.formQuestion}>
