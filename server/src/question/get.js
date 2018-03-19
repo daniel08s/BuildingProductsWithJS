@@ -23,16 +23,20 @@ export default (app) => {
   }));
 
   app.get('/api/question', passport.authenticate('jwt', {session: false}), asyncRequest(async(req, res) => {
-    // get 10 latest questions
-    const questions = await Question
-      .merge(q => ({
-        owner: r.db('expertsdb').table('User').get(q('owner')).without(['password']),
-      }))
-      .orderBy(r.desc('creationDate'))
-      .limit(10)
-      .execute();
+    try {
+      // get 10 latest questions
+      const questions = await Question
+        .merge(q => ({
+          owner: r.db('expertsdb').table('User').get(q('owner')).without(['password']),
+        }))
+        .orderBy(r.desc('creationDate'))
+        .limit(10)
+        .execute();
 
-    // send questions back
-    res.send(questions);
+      // send questions back
+      res.send(questions);
+    } catch (e) {
+      res.status(400).send({error: 'There are no questions'});
+    }
   }));
 };
