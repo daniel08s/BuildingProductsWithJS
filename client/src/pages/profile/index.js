@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 
 // our packages
 import {getUser} from '../../store/actions';
-// import User from '../../components/user';
+import User from '../../components/user';
 import Navbar from '../../components/navbar';
 
 const mapStateToProps = state => ({
@@ -16,7 +16,7 @@ const mapDispatchToProps = dispatch => ({
   getUser: payload => dispatch(getUser(payload)),
 });
 
-class User extends React.Component {
+class Home extends React.Component {
   constructor() {
     super();
 
@@ -31,27 +31,13 @@ class User extends React.Component {
     const {user, loadedUser, params, getUser} = this.props;
 
     return (
-      <div>
+      <div className="container">
         <Navbar user={user} current={`/profile/${params.id}`} />
 
-        {loadedUser ? (
-          <div className="container">
-            <ul>
-              <li>
-                Profile: {loadedUser.login}
-              </li>
-              <li>
-                Id: {loadedUser.id}
-              </li>
-              <li>
-                Registration Date: {loadedUser.registrationDate}
-              </li>
-            </ul>
-          </div>
-        ) : null}
+        <User user={loadedUser} />
       </div>
     );
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(User);
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
