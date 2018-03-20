@@ -4,8 +4,9 @@ const initialState = {user: null, status: 'started'};
 
 export const users = (state = initialState, action) => {
   switch (action.type) {
-    // get user logic
+    // all users logic
     case ActionTypes.GET_USER:
+    case ActionTypes.UPDATE_USER:
       return {
         user: null,
         status: 'loading',
@@ -15,7 +16,14 @@ export const users = (state = initialState, action) => {
         user: action.payload.user,
         status: 'done',
       };
+    case ActionTypes.UPDATE_USER_SUCCESS:
+      localStorage.setItem('user.data', JSON.stringify(action.payload.user));
+      return {
+        user: action.payload.user,
+        status: 'done',
+      };
     case ActionTypes.GET_USER_ERROR:
+    case ActionTypes.UPDATE_USER_ERROR:
       return {
         ...state,
         status: 'error',

@@ -16,7 +16,7 @@ const mapDispatchToProps = dispatch => ({
   getUser: payload => dispatch(getUser(payload)),
 });
 
-class Home extends React.Component {
+class Profile extends React.Component {
   constructor() {
     super();
 
@@ -29,15 +29,16 @@ class Home extends React.Component {
 
   render() {
     const {user, loadedUser, params, getUser} = this.props;
+    const allowEdit = user && loadedUser && user.id === loadedUser.id;
 
     return (
       <div className="container">
         <Navbar user={user} current={`/profile/${params.id}`} />
 
-        <User user={loadedUser} />
+        <User user={loadedUser} edit={allowEdit} />
       </div>
     );
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default connect(mapStateToProps, mapDispatchToProps)(Profile);
