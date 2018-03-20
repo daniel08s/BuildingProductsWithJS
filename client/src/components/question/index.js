@@ -19,7 +19,7 @@ export default ({question, onAnswer}) => {
         {question.text}
 
         <div className="pull-right">
-          <Link to={`/profile/${question.owner.id}`}>{question.owner.login}</Link>
+          Created by: <Link to={`/profile/${question.owner.id}`}>{question.owner.login}</Link>
         </div>
       </div>
       <div className="panel-body">
