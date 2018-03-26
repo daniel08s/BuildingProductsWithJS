@@ -32,10 +32,13 @@ export const answerQuestion = action$ => action$
       text: 'Answer created with success!',
       alertType: 'info',
     })))
-    .catch(error => Observable.of({
-      type: ActionTypes.ANSWER_QUESTION_ERROR,
-      payload: {error},
-    })));
+    .catch(error => Observable.of(
+      {
+        type: ActionTypes.ANSWER_QUESTION_ERROR,
+        payload: {error},
+      },
+      Actions.addNotificationAction({text: genericErrorToMessage(error), alertType: 'danger'}),
+    )));
 
 export const createQuestion = action$ => action$
   .ofType(ActionTypes.CREATE_QUESTION)
@@ -59,4 +62,26 @@ export const createQuestion = action$ => action$
         },
       },
       Actions.addNotificationAction({text: genericErrorToMessage(error), alertType: 'danger'}),
+    )));
+
+export const deleteQuestion = action$ => action$
+  .ofType(ActionTypes.DELETE_QUESTION)
+  .map(signRequest)
+  .switchMap(({headers, payload}) => Observable
+    .ajax.delete(`http://localhost:8080/api/question/${payload.id}`, headers)
+    .map(res => res.response)
+    .map(() => ({
+      type: ActionTypes.DELETE_QUESTION_SUCCESS,
+      payload,
+    }))
+    .concat(Observable.of(Actions.addNotificationAction({
+      text: 'Question deleted with success!',
+      alertType: 'info',
+    })))
+    .catch(error => Observable.of(
+      {
+        type: ActionTypes.DELETE_QUESTION_ERROR,
+        payload: {error},
+      },
+      Actions.addNotificationAction({text: genericErrorToMessage(error), alertType: 'danger'})
     )));

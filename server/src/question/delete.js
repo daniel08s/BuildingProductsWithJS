@@ -10,7 +10,7 @@ export default (app) => {
     // get requested question
     const question = await Question.get(req.params.id);
 
-    // check if user is changing his own profile
+    // check if user is deleting own question
     if (req.user.id !== question.owner) {
       res.status(403).send({error: 'Not enough permissions to delete other user profile!'});
       return;

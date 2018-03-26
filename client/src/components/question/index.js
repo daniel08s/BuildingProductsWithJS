@@ -1,7 +1,21 @@
+// npm packages
 import React from 'react';
 import {Link} from 'react-router';
+import {connect} from 'react-redux';
 
-export default ({question, onAnswer}) => {
+// our packages
+import {updateQuestion, deleteQuestion} from '../../store/actions';
+
+const mapStateToProps = state => ({
+  user: state.auth.user,
+});
+
+const mapDispatchToProps = dispatch => ({
+  // updateQuestion: payload => dispatch(updateQuestion(payload)),
+  deleteQuestion: payload => dispatch(deleteQuestion(payload)),
+});
+
+const Question = ({question, onAnswer, user, deleteQuestion}) => {
   let answerInput;
 
   const handleClick = (e) => {
@@ -13,9 +27,23 @@ export default ({question, onAnswer}) => {
     return false;
   };
 
+  const handleDelete = (e) => {
+    e.preventDefault();
+
+    deleteQuestion(question);
+
+    return false;
+  };
+
   return (
     <div className="panel panel-default text-left">
       <div className="panel-heading">
+        {user.id === question.owner.id ? (
+          <button type="submit" className="btn btn-link" onClick={handleDelete}>
+            <span className="glyphicon glyphicon-trash" style={{color: '#330000'}} />
+          </button>
+        ) : null}
+
         {question.text}
 
         <div className="pull-right">
@@ -50,3 +78,5 @@ export default ({question, onAnswer}) => {
     </div>
   );
 };
+
+export default connect(mapStateToProps, mapDispatchToProps)(Question);
