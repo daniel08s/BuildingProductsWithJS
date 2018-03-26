@@ -85,3 +85,27 @@ export const deleteQuestion = action$ => action$
       },
       Actions.addNotificationAction({text: genericErrorToMessage(error), alertType: 'danger'})
     )));
+
+export const updateQuestion = action$ => action$
+  .ofType(ActionTypes.UPDATE_QUESTION)
+  .map(signRequest)
+  .switchMap(({headers, payload}) => Observable
+    .ajax.post(`http://localhost:8080/api/question/${payload.id}`, payload, headers)
+    .map(res => res.response)
+    .map(question => ({
+      type: ActionTypes.UPDATE_QUESTION_SUCCESS,
+      payload: question,
+    }))
+    .concat(Observable.of(Actions.addNotificationAction({
+      text: 'Question updated with success!',
+      alertType: 'info',
+    })))
+    .catch(error => Observable.of(
+      {
+        type: ActionTypes.UPDATE_QUESTION_ERROR,
+        payload: {
+          error,
+        },
+      },
+      Actions.addNotificationAction({text: genericErrorToMessage(error), alertType: 'danger'}),
+    )));

@@ -15,16 +15,6 @@ export const questions = (state = initialState, action) => {
         questions: action.payload.questions,
         status: 'done',
       };
-    case ActionTypes.ANSWER_QUESTION_ERROR:
-    case ActionTypes.GET_ALL_QUESTIONS_ERROR:
-    case ActionTypes.CREATE_QUESTION_ERROR:
-    case ActionTypes.DELETE_QUESTION_ERROR:
-      return {
-        ...state,
-        status: 'error',
-        error: action.payload.error,
-      };
-    // answer questions logic
     case ActionTypes.ANSWER_QUESTION_SUCCESS: {
       const newQuestions = state.questions.map(q => (q.id === action.payload.id ? action.payload : q));
       return {...state, questions: newQuestions};
@@ -37,6 +27,20 @@ export const questions = (state = initialState, action) => {
       const newQuestions = state.questions.filter(q => q.id !== action.payload.id);
       return {...state, questions: newQuestions};
     }
+    case ActionTypes.UPDATE_QUESTION_SUCCESS: {
+      const newQuestions = state.questions.map(q => q.id === action.payload.id ? {...action.payload, owner: q.owner} : q);
+      return {...state, questions: newQuestions};
+    }
+    case ActionTypes.ANSWER_QUESTION_ERROR:
+    case ActionTypes.GET_ALL_QUESTIONS_ERROR:
+    case ActionTypes.CREATE_QUESTION_ERROR:
+    case ActionTypes.DELETE_QUESTION_ERROR:
+    case ActionTypes.UPDATE_QUESTION_ERROR:
+      return {
+        ...state,
+        status: 'error',
+        error: action.payload.error,
+      };
     default:
       return state;
   }

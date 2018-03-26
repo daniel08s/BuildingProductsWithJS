@@ -5,7 +5,8 @@ import {
   getAllQuestions,
   answerQuestion,
   createQuestion,
-  deleteQuestion
+  deleteQuestion,
+  updateQuestion
 } from './questions';
 import {getUser, updateUser} from './users';
 
@@ -22,6 +23,7 @@ export default [
   answerQuestion,
   createQuestion,
   deleteQuestion,
+  updateQuestion,
   // users
   getUser,
   updateUser,

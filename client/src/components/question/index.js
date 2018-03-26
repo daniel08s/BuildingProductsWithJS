@@ -1,4 +1,5 @@
 // npm packages
+import _ from 'lodash';
 import React from 'react';
 import {Link} from 'react-router';
 import {connect} from 'react-redux';
@@ -11,72 +12,120 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  // updateQuestion: payload => dispatch(updateQuestion(payload)),
+  updateQuestion: payload => dispatch(updateQuestion(payload)),
   deleteQuestion: payload => dispatch(deleteQuestion(payload)),
 });
 
-const Question = ({question, onAnswer, user, deleteQuestion}) => {
-  let answerInput;
+class Question extends React.Component {
+  constructor() {
+    super();
 
-  const handleClick = (e) => {
+    this.state = {editing: false};
+
+    this.answerInput = null;
+    this.questionInput = null;
+}
+
+  handleAnswerClick(e) {
     e.preventDefault();
-
-    onAnswer({question, answer: answerInput.value});
-    answerInput.value = '';
-
+    this.props.onAnswer(
+      {
+        question: this.props.question,
+        answer: this.answerInput.value,
+      });
+    this.answerInput.value = '';
     return false;
-  };
+  }
 
-  const handleDelete = (e) => {
+  handleDeleteClick(e) {
     e.preventDefault();
-
-    deleteQuestion(question);
-
+    this.props.deleteQuestion(this.props.question);
     return false;
-  };
+  }
 
-  return (
-    <div className="panel panel-default text-left">
-      <div className="panel-heading">
-        {user.id === question.owner.id ? (
-          <button type="submit" className="btn btn-link" onClick={handleDelete}>
-            <span className="glyphicon glyphicon-trash" style={{color: '#330000'}} />
-          </button>
-        ) : null}
+  handleUpdateClick(e) {
+    e.preventDefault();
+    const newQuestion = _.omit(this.props.question, ['owner', 'answers']);
+    newQuestion.text = this.questionInput.value;
+    this.props.updateQuestion(newQuestion);
+    this.setState({editing: !this.state.editing});
+    return false;
+  }
+  
+  toggleEdit(e) {
+    e.preventDefault();
+    this.setState({editing: !this.state.editing});
+    return false;
+  }
 
-        {question.text}
+  render() {
+    const {question, onAnswer, user, deleteQuestion, updateQuestion} = this.props;
+    const {editing} = this.state;
 
-        <div className="pull-right">
-          Created by: <Link to={`/profile/${question.owner.id}`}>{question.owner.login}</Link>
-        </div>
-      </div>
-      <div className="panel-body">
-        {question.answers.length > 0 ? (
-          <ul className="list-group">
-            {question.answers.map((answer, i) => (
-              <li className="list-group-item" key={i}>{answer.answer}</li>
-            ))}
-          </ul>
-        ) : 'No answers yet.'}
-        <div className="panel-footer">
-          <form className="form-horizontal">
-            <div className="col-sm-10">
+    return (
+      <div className="panel panel-default text-left">
+        <div className="panel-heading">
+          {user.id === question.owner.id && (
+            <span>
+              <button type="submit" className="btn btn-link" onClick={this.handleDeleteClick}>
+                <span className="glyphicon glyphicon-trash" style={{color: '#800000'}} />
+              </button>
+              {editing ? '' : (
+                <button className="btn btn-link" onClick={e => this.toggleEdit(e)}>
+                  <span className="glyphicon glyphicon-pencil" style={{color: '#800000'}} />
+                </button>
+              )}
+            </span>
+          )}
+
+          {editing ? (
+            <span>
               <input
                 type="text"
-                className="form-control"
-                id="answerInput"
-                placeholder="Enter your answer..."
-                ref={(i) => { answerInput = i; }}
+                defaultValue={question.text}
+                ref={(i) => { this.questionInput = i; }}
               />
-            </div>
-            <button type="submit" className="btn btn-default" onClick={handleClick}>
-              Answer
-            </button>
-          </form>
+              <button className="btn btn-link" onClick={e => this.handleUpdateClick(e)}>
+                <span className="glyphicon glyphicon-ok" style={{color: '#800000'}} />
+              </button>
+              <button className="btn btn-link" onClick={e => this.toggleEdit(e)}>
+                <span className="glyphicon glyphicon-remove" style={{color: '#800000'}} />
+              </button>
+            </span>
+          ) : question.text}
+
+          <div className="pull-right">
+            Created by: <Link to={`/profile/${question.owner.id}`}>{question.owner.login}</Link>
+          </div>
+        </div>
+        <div className="panel-body">
+          {question.answers.length > 0 ? (
+            <ul className="list-group">
+              {question.answers.map((answer, i) => (
+                <li className="list-group-item" key={i}>{answer.answer}</li>
+              ))}
+            </ul>
+          ) : 'No answers yet.'}
+          <div className="panel-footer">
+            <form className="form-horizontal">
+              <div className="col-sm-10">
+                <input
+                  type="text"
+                  className="form-control"
+                  id="answerInput"
+                  placeholder="Enter your answer..."
+                  ref={(i) => { this.answerInput = i; }}
+                />
+              </div>
+              <button type="submit" className="btn btn-default" onClick={this.handleAnswerClick}>
+                Answer
+              </button>
+            </form>
+          </div>
         </div>
       </div>
-    </div>
-  );
-};
+    );
+  };
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(Question);
