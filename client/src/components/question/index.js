@@ -1,6 +1,6 @@
 // npm packages
 import _ from 'lodash';
-import React from 'react';
+import React, {PropTypes} from 'react';
 import {Link} from 'react-router';
 import {connect} from 'react-redux';
 
@@ -24,15 +24,14 @@ class Question extends React.Component {
 
     this.answerInput = null;
     this.questionInput = null;
-}
+  }
 
   handleAnswerClick(e) {
     e.preventDefault();
-    this.props.onAnswer(
-      {
-        question: this.props.question,
-        answer: this.answerInput.value,
-      });
+    this.props.onAnswer({
+      question: this.props.question,
+      answer: this.answerInput.value,
+    });
     this.answerInput.value = '';
     return false;
   }
@@ -51,7 +50,7 @@ class Question extends React.Component {
     this.setState({editing: !this.state.editing});
     return false;
   }
-  
+
   toggleEdit(e) {
     e.preventDefault();
     this.setState({editing: !this.state.editing});
@@ -59,7 +58,7 @@ class Question extends React.Component {
   }
 
   render() {
-    const {question, onAnswer, user, deleteQuestion, updateQuestion} = this.props;
+    const {question, user} = this.props;
     const {editing} = this.state;
 
     return (
@@ -125,7 +124,15 @@ class Question extends React.Component {
         </div>
       </div>
     );
-  };
+  }
 }
+
+Question.propTypes = {
+  onAnswer: PropTypes.func.isRequired,
+  deleteQuestion: PropTypes.func.isRequired,
+  updateQuestion: PropTypes.func.isRequired,
+  question: PropTypes.shape({}).isRequired,
+  user: PropTypes.shape({}).isRequired,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Question);

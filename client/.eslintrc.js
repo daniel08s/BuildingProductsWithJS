@@ -2,7 +2,13 @@ module.exports = {
   "parser": "babel-eslint",
   "extends": "airbnb",
   "env": {
-    "browser": true
+    "browser": true,
+    "jest": true
+  },
+  "globals": {
+    "shallow": true,
+    "render": true,
+    "mount": true
   },
   "plugins": [
     "babel"
@@ -34,7 +40,7 @@ module.exports = {
       "specialLink": [ "hrefLeft", "hrefRight", "to" ],
       "aspects": [ "noHref", "invalidHref", "preferButton" ]
     }],
-    "no-confusing-arrow": ["error", {"allowParens": false}],
+    "no-confusing-arrow": "off",
     "jsx-a11y/anchor-has-content": ["error"],
   }
 };

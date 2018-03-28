@@ -16,6 +16,7 @@ export const questions = (state = initialState, action) => {
         status: 'done',
       };
     case ActionTypes.ANSWER_QUESTION_SUCCESS: {
+      // eslint-disable-next-line no-confusing-arrow
       const newQuestions = state.questions.map(q => (q.id === action.payload.id ? action.payload : q));
       return {...state, questions: newQuestions};
     }
@@ -28,7 +29,12 @@ export const questions = (state = initialState, action) => {
       return {...state, questions: newQuestions};
     }
     case ActionTypes.UPDATE_QUESTION_SUCCESS: {
-      const newQuestions = state.questions.map(q => q.id === action.payload.id ? {...action.payload, owner: q.owner} : q);
+      const newQuestions = state.questions.map((q) => {
+        if (q.id === action.payload.id) {
+          return {...action.payload, owner: q.owner};
+        }
+        return q;
+      });
       return {...state, questions: newQuestions};
     }
     case ActionTypes.ANSWER_QUESTION_ERROR:
