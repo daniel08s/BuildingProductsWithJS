@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`# Popup 1`] = `
+<div
+  style={
+    Object {
+      "bottom": "25px",
+      "maxWidth": "500px",
+      "position": "absolute",
+      "right": "17%",
+      "width": "100%",
+    }
+  }
+>
+  <div
+    className="row"
+  >
+    <div
+      className="col-xs-11 col-sm-9 col-md-7"
+    >
+      <Connect(Notifications) />
+    </div>
+  </div>
+</div>
+`;
