@@ -6,6 +6,7 @@
   "scripts": {
     "start": "node serve.js",
     "test": "jest",
+    "test:watch": "jest --watch",
     "cover": "jest --coverage"
   },
   "repository": {
@@ -24,7 +25,15 @@
   },
   "homepage": "https://github.com/iskilled/BuildingProductsWithJS#readme",
   "jest": {
-    "setupTestFrameworkScriptFile": "./test/setup.js"
+    "setupFiles": [
+      "./test/setup.js"
+    ],
+    "snapshotSerializers": [
+      "<rootDir>/node_modules/enzyme-to-json/serializer"
+    ],
+    "moduleNameMapper": {
+      "^.+\\.(css|scss)$": "identity-obj-proxy"
+    }
   },
   "devDependencies": {
     "babel-core": "6.21.0",
@@ -38,6 +47,8 @@
     "babel-preset-react-optimize": "^1.0.1",
     "babel-preset-stage-0": "^6.5.0",
     "css-loader": "0.26.1",
+    "enzyme": "2.8.2",
+    "enzyme-to-json": "1.4.5",
     "eslint": "^4.17.0",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-plugin-babel": "git+https://git@github.com/lyleunderwood/eslint-plugin-babel.git#do-expressions",
@@ -46,9 +57,11 @@
     "eslint-plugin-react": "^7.6.1",
     "express": "^4.14.0",
     "file-loader": "^1.1.6",
+    "identity-obj-proxy": "3.0.0",
     "jest": "^22.4.3",
     "json-loader": "^0.5.4",
     "lodash": "^4.17.5",
+    "react-addons-test-utils": "15.4.2",
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.7",
     "webpack": "1.14.0",
