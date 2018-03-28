@@ -16,7 +16,7 @@ const mapDispatchToProps = dispatch => ({
   deleteQuestion: payload => dispatch(deleteQuestion(payload)),
 });
 
-class Question extends React.Component {
+export class Question extends React.Component {
   constructor() {
     super();
 
@@ -66,7 +66,7 @@ class Question extends React.Component {
         <div className="panel-heading">
           {user.id === question.owner.id && (
             <span>
-              <button type="submit" className="btn btn-link" onClick={this.handleDeleteClick}>
+              <button type="submit" className="btn btn-link" id="deleteBtn" onClick={e => this.handleDeleteClick(e)}>
                 <span className="glyphicon glyphicon-trash" style={{color: '#800000'}} />
               </button>
               {editing ? '' : (
@@ -81,13 +81,14 @@ class Question extends React.Component {
             <span>
               <input
                 type="text"
+                id="questionText"
                 defaultValue={question.text}
                 ref={(i) => { this.questionInput = i; }}
               />
               <button className="btn btn-link" onClick={e => this.handleUpdateClick(e)}>
                 <span className="glyphicon glyphicon-ok" style={{color: '#800000'}} />
               </button>
-              <button className="btn btn-link" onClick={e => this.toggleEdit(e)}>
+              <button className="btn btn-link" id="answerBtn" onClick={e => this.toggleEdit(e)}>
                 <span className="glyphicon glyphicon-remove" style={{color: '#800000'}} />
               </button>
             </span>
@@ -116,7 +117,7 @@ class Question extends React.Component {
                   ref={(i) => { this.answerInput = i; }}
                 />
               </div>
-              <button type="submit" className="btn btn-default" onClick={this.handleAnswerClick}>
+              <button type="submit" className="btn btn-default" onClick={e => this.handleAnswerClick(e)}>
                 Answer
               </button>
             </form>
