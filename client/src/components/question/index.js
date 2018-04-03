@@ -70,7 +70,7 @@ export class Question extends React.Component {
                 <span className="glyphicon glyphicon-trash" style={{color: '#800000'}} />
               </button>
               {editing ? '' : (
-                <button className="btn btn-link" onClick={e => this.toggleEdit(e)}>
+                <button className="btn btn-link" id="editBtn" onClick={e => this.toggleEdit(e)}>
                   <span className="glyphicon glyphicon-pencil" style={{color: '#800000'}} />
                 </button>
               )}
@@ -85,10 +85,10 @@ export class Question extends React.Component {
                 defaultValue={question.text}
                 ref={(i) => { this.questionInput = i; }}
               />
-              <button className="btn btn-link" onClick={e => this.handleUpdateClick(e)}>
+              <button className="btn btn-link" id="updateBtn" onClick={e => this.handleUpdateClick(e)}>
                 <span className="glyphicon glyphicon-ok" style={{color: '#800000'}} />
               </button>
-              <button className="btn btn-link" id="answerBtn" onClick={e => this.toggleEdit(e)}>
+              <button className="btn btn-link" id="editBtn2" onClick={e => this.toggleEdit(e)}>
                 <span className="glyphicon glyphicon-remove" style={{color: '#800000'}} />
               </button>
             </span>
@@ -106,22 +106,22 @@ export class Question extends React.Component {
               ))}
             </ul>
           ) : 'No answers yet.'}
-          <div className="panel-footer">
-            <form className="form-horizontal">
-              <div className="col-sm-10">
-                <input
-                  type="text"
-                  className="form-control"
-                  id="answerInput"
-                  placeholder="Enter your answer..."
-                  ref={(i) => { this.answerInput = i; }}
-                />
-              </div>
-              <button type="submit" className="btn btn-default" onClick={e => this.handleAnswerClick(e)}>
-                Answer
-              </button>
-            </form>
-          </div>
+        </div>
+        <div className="panel-footer">
+          <form className="form-horizontal">
+            <div className="col-sm-10">
+              <input
+                type="text"
+                className="form-control"
+                id="answerInput"
+                placeholder="Enter your answer..."
+                ref={(i) => { this.answerInput = i; }}
+              />
+            </div>
+            <button type="submit" id="answerBtn" className="btn btn-default" onClick={e => this.handleAnswerClick(e)}>
+              Answer
+            </button>
+          </form>
         </div>
       </div>
     );
