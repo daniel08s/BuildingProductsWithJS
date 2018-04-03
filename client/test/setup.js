@@ -27,10 +27,12 @@ global.shallow = shallow;
 global.render = render;
 global.mount = mount;
 // Skip createElement warnings but fail tests on any other warning
-const {error} = console;
-console.error = function(warning, ...args) {
-  if (/(React.createElement: type should not be null)/.test(warning)) {
-    throw new Error(warning);
-  }
-  error.apply(console, [warning, ...args]);
-};
+// const {error} = console;
+// console.error = function(warning, ...args) {
+//   if (/(React.createElement: type should not be null)/.test(warning)) {
+//     throw new Error(warning);
+//   }
+//   error.apply(console, [warning, ...args]);
+// };
+console.warn = jest.genMockFunction();
+console.error = console.warn;
