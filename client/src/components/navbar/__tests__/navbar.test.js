@@ -1,5 +1,4 @@
-/* global test expect shallow */
-import React from 'react';
+/* global test expect shallow React */
 import Navbar from '../index';
 
 test('# Navbar', () => {

@@ -1,4 +1,4 @@
-/* global test expect shallow */
+/* global test expect shallow React */
 import Popup from '../index';
 
 test('# Popup', () => {
