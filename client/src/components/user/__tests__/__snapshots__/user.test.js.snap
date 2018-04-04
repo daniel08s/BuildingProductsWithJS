@@ -1,0 +1,78 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`# User 1`] = `
+<div
+  className="panel panel-default text-left"
+>
+  <div
+    className="panel-heading form-inline"
+  >
+    User: 
+    <input
+      className="form-control"
+      defaultValue="testuser"
+      id="loginText"
+      type="text"
+    />
+    <div
+      className="pull-right"
+    >
+      <button
+        className="btn btn-default"
+        id="saveBtn"
+        onClick={[Function]}
+      >
+        Save
+      </button>
+    </div>
+  </div>
+  <div
+    className="panel-body"
+  >
+    Registration date: 
+    Thu Feb 01 2018 01:01:01 GMT+0000
+  </div>
+</div>
+`;
+
+exports[`# UserWrapper 1`] = `
+<User
+  edit={false}
+  handleUpdateUser={[Function]}
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+  storeSubscription={
+    Subscription {
+      "listeners": Object {
+        "notify": [Function],
+      },
+      "onStateChange": [Function],
+      "parentSub": undefined,
+      "store": Object {
+        "clearActions": [Function],
+        "dispatch": [Function],
+        "getActions": [Function],
+        "getState": [Function],
+        "replaceReducer": [Function],
+        "subscribe": [Function],
+      },
+      "unsubscribe": null,
+    }
+  }
+  user={
+    Object {
+      "id": "1",
+      "login": "testuser",
+      "registrationDate": 2018-02-01T01:01:01.001Z,
+    }
+  }
+/>
+`;
