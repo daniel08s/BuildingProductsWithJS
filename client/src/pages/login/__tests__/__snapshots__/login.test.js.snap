@@ -1,0 +1,117 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`# Login page 1`] = `
+<form
+  className="formSignin"
+>
+  <h1
+    className="h1 mb-1 font-weight-normal"
+  >
+    Experts portal
+  </h1>
+  <p
+    className="h3 mb-3 font-weight-normal"
+  >
+    Please sign in
+  </p>
+  <label
+    className="sr-only"
+    htmlFor="inputUsername"
+  >
+    Username
+  </label>
+  <input
+    className="form-control"
+    id="inputUsername"
+    placeholder="Username"
+    required={true}
+    type="text"
+  />
+  <label
+    className="sr-only"
+    htmlFor="inputPassword"
+  >
+    Password
+  </label>
+  <input
+    className="form-control"
+    id="inputPassword"
+    placeholder="Password"
+    required={true}
+    type="password"
+  />
+  <div
+    className="checkbox mb-3"
+  >
+    <label
+      htmlFor="inputRemember"
+    >
+      <input
+        id="inputRemember"
+        type="checkbox"
+      />
+       Remember me
+    </label>
+  </div>
+  <button
+    className="btn btn-lg btn-primary btn-block"
+    onClick={[Function]}
+    type="submit"
+  >
+    Login
+  </button>
+  <p
+    className="h5 font-weight-normal"
+  >
+    Not registered? 
+    <Link
+      onlyActiveOnIndex={false}
+      style={Object {}}
+      to="/register"
+    >
+      Click here.
+    </Link>
+  </p>
+  <p
+    className="mt-5 mb-3 text-muted"
+  >
+    © 2017-2018
+  </p>
+</form>
+`;
+
+exports[`# LoginPage Wrapper  1`] = `
+<Login
+  navToHome={[Function]}
+  onLoginClick={[Function]}
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+  storeSubscription={
+    Subscription {
+      "listeners": Object {
+        "notify": [Function],
+      },
+      "onStateChange": [Function],
+      "parentSub": undefined,
+      "store": Object {
+        "clearActions": [Function],
+        "dispatch": [Function],
+        "getActions": [Function],
+        "getState": [Function],
+        "replaceReducer": [Function],
+        "subscribe": [Function],
+      },
+      "unsubscribe": null,
+    }
+  }
+  token="0"
+/>
+`;
