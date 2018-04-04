@@ -1,6 +1,5 @@
 // npm packages
-import React from 'react';
-import {Link} from 'react-router';
+import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
 import moment from 'moment';
 
@@ -19,7 +18,7 @@ const mapDispatchToProps = dispatch => ({
   doCreateQuestion: payload => dispatch(createQuestion(payload)),
 });
 
-const Create = ({doCreateQuestion, user}) => {
+export const Create = ({doCreateQuestion, user}) => {
   let questionText;
   let questionDate;
 
@@ -36,7 +35,7 @@ const Create = ({doCreateQuestion, user}) => {
 
   return (
     <div>
-      <Navbar user={user} current={'/create'} />
+      <Navbar user={user} current="/create" />
 
       <div className="container">
         <form className={styles.formQuestion}>
@@ -76,6 +75,11 @@ const Create = ({doCreateQuestion, user}) => {
       </div>
     </div>
   );
+};
+
+Create.propTypes = {
+  user: PropTypes.shape({}).isRequired,
+  doCreateQuestion: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Create);
