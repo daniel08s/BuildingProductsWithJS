@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import moment from 'moment';
 import {connect} from 'react-redux';
 
@@ -8,14 +8,14 @@ import {updateUser} from '../../store/actions';
 const mapStateToProps = () => ({});
 
 const mapDispatchToProps = dispatch => ({
-  updateUser: payload => dispatch(updateUser(payload)),
+  handleUpdateUser: payload => dispatch(updateUser(payload)),
 });
 
-const User = ({user, edit, updateUser}) => {
+export const User = ({user, edit, handleUpdateUser}) => {
   let userInput;
 
   const saveUser = () => {
-    updateUser({
+    handleUpdateUser({
       ...user,
       login: userInput.value,
     });
@@ -28,6 +28,7 @@ const User = ({user, edit, updateUser}) => {
           <input
             className="form-control"
             type="text"
+            id="loginText"
             defaultValue={user.login}
             ref={(i) => { userInput = i; }}
           />
@@ -35,7 +36,7 @@ const User = ({user, edit, updateUser}) => {
 
         {edit && (
           <div className="pull-right">
-            <button className="btn btn-default" onClick={saveUser}>
+            <button className="btn btn-default" id="saveBtn" onClick={saveUser}>
               Save
             </button>
           </div>
@@ -46,6 +47,18 @@ const User = ({user, edit, updateUser}) => {
       </div>
     </div>
   ) : null;
+};
+
+User.defaultProps = {
+  user: {},
+  edit: false,
+  handleUpdateUser: () => {},
+};
+
+User.propTypes = {
+  user: PropTypes.shape({}),
+  edit: PropTypes.bool,
+  handleUpdateUser: PropTypes.func,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(User);

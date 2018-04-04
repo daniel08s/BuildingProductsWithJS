@@ -1,5 +1,5 @@
 // npm packages
-import React from 'react';
+import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
 
 // our packages
@@ -16,7 +16,7 @@ const mapDispatchToProps = dispatch => ({
   getUser: payload => dispatch(getUser(payload)),
 });
 
-class Profile extends React.Component {
+export class Profile extends React.Component {
   constructor() {
     super();
 
@@ -28,7 +28,11 @@ class Profile extends React.Component {
   }
 
   render() {
-    const {user, loadedUser, params, getUser} = this.props;
+    const {
+      user,
+      loadedUser,
+      params,
+    } = this.props;
     const allowEdit = user && loadedUser && user.id === loadedUser.id;
 
     return (
@@ -40,5 +44,19 @@ class Profile extends React.Component {
     );
   }
 }
+
+Profile.defaultProps = {
+  loadedUser: {},
+  params: PropTypes.shape({
+    key: PropTypes.string.isRequired,
+  }),
+};
+
+Profile.propTypes = {
+  user: PropTypes.shape({}).isRequired,
+  loadedUser: PropTypes.shape({}),
+  getUser: PropTypes.func.isRequired,
+  params: PropTypes.shape({}),
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Profile);
