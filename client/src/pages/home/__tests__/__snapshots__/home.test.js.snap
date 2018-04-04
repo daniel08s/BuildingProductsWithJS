@@ -1,0 +1,82 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`# Home 1`] = `
+<div>
+  <Component
+    current="/"
+    user={
+      Object {
+        "id": "1",
+        "login": "testuser",
+        "registrationDate": 2018-02-01T01:01:01.001Z,
+      }
+    }
+  />
+  <div
+    className="container"
+  >
+    <Connect(Question)
+      onAnswer={[Function]}
+      question={
+        Object {
+          "answers": Array [
+            Object {
+              "answer": "Test answer",
+            },
+          ],
+          "id": 1,
+          "owner": Object {
+            "id": "1",
+            "login": "testuser",
+            "registrationDate": 2018-02-01T01:01:01.001Z,
+          },
+          "text": "Test question",
+        }
+      }
+    />
+  </div>
+</div>
+`;
+
+exports[`# HomePage 1`] = `
+<Home
+  doAnswer={[Function]}
+  fetchQuestions={[Function]}
+  questions={Array []}
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+  storeSubscription={
+    Subscription {
+      "listeners": Object {
+        "notify": [Function],
+      },
+      "onStateChange": [Function],
+      "parentSub": undefined,
+      "store": Object {
+        "clearActions": [Function],
+        "dispatch": [Function],
+        "getActions": [Function],
+        "getState": [Function],
+        "replaceReducer": [Function],
+        "subscribe": [Function],
+      },
+      "unsubscribe": null,
+    }
+  }
+  user={
+    Object {
+      "id": "1",
+      "login": "testuser",
+      "registrationDate": 2018-02-01T01:01:01.001Z,
+    }
+  }
+/>
+`;

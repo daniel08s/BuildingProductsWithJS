@@ -1,7 +1,6 @@
 // npm packages
 import React from 'react';
 import _ from 'lodash';
-import {Link} from 'react-router';
 import {connect} from 'react-redux';
 
 // our packages
@@ -19,7 +18,7 @@ const mapDispatchToProps = dispatch => ({
   doAnswer: payload => dispatch(answerQuestion(payload)),
 });
 
-const Home = ({fetchQuestions, doAnswer, questions, user}) => {
+export const Home = ({fetchQuestions, doAnswer, questions, user}) => {
   fetchQuestions();
 
   return (
