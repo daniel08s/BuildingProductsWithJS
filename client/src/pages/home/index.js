@@ -23,7 +23,7 @@ export const Home = ({fetchQuestions, doAnswer, questions, user}) => {
 
   return (
     <div>
-      <Navbar user={user} current={'/'} />
+      <Navbar user={user} current="/" />
 
       <div className="container">
         {questions.map(question => (
