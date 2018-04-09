@@ -1,4 +1,8 @@
+// npm packages
 import {Observable} from 'rxjs/Observable';
+import {push} from 'react-router-redux';
+
+// our packages
 import * as ActionTypes from '../actionTypes';
 import * as Actions from '../actions';
 import {loginErrorToMessage, genericErrorToMessage} from '../../util';
@@ -26,15 +30,19 @@ export const login = action$ => action$
   .switchMap(({payload}) => Observable
     .ajax.post('http://localhost:8080/api/login', payload)
     .map(res => res.response)
-    .mergeMap(response => Observable.of(
-      {
-        type: ActionTypes.LOGIN_SUCCESS,
-        payload: response,
-      },
-      Actions.addNotificationAction({
-        text: 'Login successful!',
-        alertType: 'info',
-      }),
+    .mergeMap(response => Observable.merge(
+      Observable.of(
+        {
+          type: ActionTypes.LOGIN_SUCCESS,
+          payload: response,
+        },
+        Actions.addNotificationAction({
+          text: 'Login successful!',
+          alertType: 'info',
+        }),
+      ),
+      Observable.timer(0)
+        .map(() => push('/'))
     ))
     .catch(error => Observable.of(
       {

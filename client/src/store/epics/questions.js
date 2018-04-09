@@ -1,4 +1,8 @@
+// npm packages
 import {Observable} from 'rxjs/Observable';
+import {push} from 'react-router-redux';
+
+// our packages
 import * as ActionTypes from '../actionTypes';
 import * as Actions from '../actions';
 import {signRequest, genericErrorToMessage} from '../../util';
@@ -46,14 +50,20 @@ export const createQuestion = action$ => action$
   .switchMap(({headers, payload}) => Observable
     .ajax.post('http://localhost:8080/api/question/', payload, headers)
     .map(res => res.response)
-    .map(question => ({
-      type: ActionTypes.CREATE_QUESTION_SUCCESS,
-      payload: question,
-    }))
-    .concat(Observable.of(Actions.addNotificationAction({
-      text: 'Question created with success!',
-      alertType: 'info',
-    })))
+    .mergeMap(question => Observable.merge(
+      Observable.of(
+        {
+          type: ActionTypes.CREATE_QUESTION_SUCCESS,
+          payload: question,
+        },
+        Actions.addNotificationAction({
+          text: 'Question created with success!',
+          alertType: 'info',
+        }),
+      ),
+      Observable.timer(0)
+        .map(() => (push('/')))
+    ))
     .catch(error => Observable.of(
       {
         type: ActionTypes.CREATE_QUESTION_ERROR,
