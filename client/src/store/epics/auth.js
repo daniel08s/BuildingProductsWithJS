@@ -60,15 +60,19 @@ export const register = action$ => action$
   .switchMap(({payload}) => Observable
     .ajax.post('http://localhost:8080/api/register', payload)
     .map(res => res.response)
-    .mergeMap(response => Observable.of(
-      {
-        type: ActionTypes.REGISTER_SUCCESS,
-        payload: response,
-      },
-      Actions.addNotificationAction({
-        text: 'Registration successful!',
-        alertType: 'info',
-      }),
+    .mergeMap(response => Observable.merge(
+      Observable.of(
+        {
+          type: ActionTypes.REGISTER_SUCCESS,
+          payload: response,
+        },
+        Actions.addNotificationAction({
+          text: 'Registration successful!',
+          alertType: 'info',
+        }),
+      ),
+      Observable.timer(0)
+        .map(() => push('/login'))
     ))
     .catch(error => Observable.of(
       {

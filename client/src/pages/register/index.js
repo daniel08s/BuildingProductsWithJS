@@ -19,7 +19,7 @@ const mapDispatchToProps = dispatch => ({
   navToLogin: () => dispatch(push('/login')),
 });
 
-const Register = ({onRegisterClick, navToLogin, redirectToLogin}) => {
+export const Register = ({onRegisterClick, navToLogin, redirectToLogin}) => {
   let usernameInput;
   let passwordInput;
   let passwordRepeatInput;
