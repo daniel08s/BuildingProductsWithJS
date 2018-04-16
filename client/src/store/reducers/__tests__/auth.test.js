@@ -54,4 +54,5 @@ test('# auth reducer - update user success', () => {
   };
   expect(auth(testState, action).user.login).toEqual(newLogin);
   expect(auth(testState, action).token).toEqual('123');
+  expect(auth(testState, {type: '-1'})).toEqual(testState);
 });
