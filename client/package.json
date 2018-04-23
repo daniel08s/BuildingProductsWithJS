@@ -51,7 +51,7 @@
     "enzyme-to-json": "1.4.5",
     "eslint": "^4.17.0",
     "eslint-config-airbnb": "^16.1.0",
-    "eslint-plugin-babel": "git+https://git@github.com/lyleunderwood/eslint-plugin-babel.git#do-expressions",
+    "eslint-plugin-babel": "^5.1.0",
     "eslint-plugin-import": "^2.8.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.6.1",
