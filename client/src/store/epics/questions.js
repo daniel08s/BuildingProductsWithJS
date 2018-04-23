@@ -5,7 +5,7 @@ import {push} from 'react-router-redux';
 // our packages
 import * as ActionTypes from '../actionTypes';
 import * as Actions from '../actions';
-import {signRequest, genericErrorToMessage} from '../../util';
+import {signRequest, genericErrorToMessage} from '../../util/signRequest';
 
 export const getAllQuestions = action$ => action$
   .ofType(ActionTypes.GET_ALL_QUESTIONS)
