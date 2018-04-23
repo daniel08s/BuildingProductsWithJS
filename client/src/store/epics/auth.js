@@ -5,7 +5,7 @@ import {push} from 'react-router-redux';
 // our packages
 import * as ActionTypes from '../actionTypes';
 import * as Actions from '../actions';
-import {loginErrorToMessage, genericErrorToMessage} from '../../util';
+import {loginErrorToMessage, genericErrorToMessage} from '../../util/errorToMessage';
 
 // ASCII diagram for Rx Streams (see: https://gist.github.com/staltz/868e7e9bc2a7b8c1f754)
 
