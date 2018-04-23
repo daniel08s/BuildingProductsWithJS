@@ -1,7 +1,7 @@
 import {Observable} from 'rxjs/Observable';
 import * as ActionTypes from '../actionTypes';
 import * as Actions from '../actions';
-import {signRequest, genericErrorToMessage} from '../../util';
+import {signRequest, genericErrorToMessage} from '../../util/signRequest';
 
 export const getUser = action$ => action$
   .ofType(ActionTypes.GET_USER)
