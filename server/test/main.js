@@ -16,8 +16,12 @@ export default () => {
   thinky.dbReady().then(() => {
     // clean the database
     test(async(t) => {
-      await r.db(dbConfig.db).table('User').delete();
-      await r.db(dbConfig.db).table('Question').delete();
+      try {
+        await r.db(dbConfig.db).table('User').delete();
+        await r.db(dbConfig.db).table('Question').delete();
+      } catch (e) {
+        // console.log('Tables not available');
+      }
       t.end();
     });
 
