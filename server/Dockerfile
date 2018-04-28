@@ -1,5 +1,4 @@
-FROM node
-# FROM kkarczmarczyk/node-yarn:latest
+FROM kkarczmarczyk/node-yarn:latest
 
 # Create app folder
 RUN mkdir -p /app
@@ -7,9 +6,8 @@ WORKDIR /app
 
 # Cache npm dependencies
 COPY package.json /app/
-RUN npm install
-# COPY yarn.lock /app/
-# RUN yarn
+COPY yarn.lock /app/
+RUN yarn
 
 # Copy application files
 COPY . /app
