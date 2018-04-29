@@ -39,7 +39,7 @@ test-client:
   stage: test
   script:
     - docker pull $CLIENT_TEST_IMAGE
-    - docker run -e TZ=Europe/Lisbon $SERVER_TEST_IMAGE npm test
+    - docker run -e TZ=Europe/Lisbon $CLIENT_TEST_IMAGE npm test
 
 release-server:
   stage: release
