@@ -8,7 +8,9 @@ module.exports = {
   "globals": {
     "shallow": true,
     "render": true,
-    "mount": true
+    "mount": true,
+    "API_HOST": true,
+    
   },
   "plugins": [
     "babel"

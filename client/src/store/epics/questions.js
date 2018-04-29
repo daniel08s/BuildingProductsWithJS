@@ -11,7 +11,7 @@ export const getAllQuestions = action$ => action$
   .ofType(ActionTypes.GET_ALL_QUESTIONS)
   .map(signRequest)
   .switchMap(({headers}) => Observable
-    .ajax.get('http://localhost:8080/api/question', headers)
+    .ajax.get(`${API_HOST}/api/question`, headers)
     .map(res => res.response)
     .map(questions => ({
       type: ActionTypes.GET_ALL_QUESTIONS_SUCCESS,
@@ -26,7 +26,7 @@ export const answerQuestion = action$ => action$
   .ofType(ActionTypes.ANSWER_QUESTION)
   .map(signRequest)
   .switchMap(({headers, payload}) => Observable
-    .ajax.post(`http://localhost:8080/api/question/${payload.question.id}/answer`, {answer: payload.answer}, headers)
+    .ajax.post(`${API_HOST}/api/question/${payload.question.id}/answer`, {answer: payload.answer}, headers)
     .map(res => res.response)
     .map(question => ({
       type: ActionTypes.ANSWER_QUESTION_SUCCESS,
@@ -48,7 +48,7 @@ export const createQuestion = action$ => action$
   .ofType(ActionTypes.CREATE_QUESTION)
   .map(signRequest)
   .switchMap(({headers, payload}) => Observable
-    .ajax.post('http://localhost:8080/api/question/', payload, headers)
+    .ajax.post(`${API_HOST}/api/question/`, payload, headers)
     .map(res => res.response)
     .mergeMap(question => Observable.merge(
       Observable.of(
@@ -78,7 +78,7 @@ export const deleteQuestion = action$ => action$
   .ofType(ActionTypes.DELETE_QUESTION)
   .map(signRequest)
   .switchMap(({headers, payload}) => Observable
-    .ajax.delete(`http://localhost:8080/api/question/${payload.id}`, headers)
+    .ajax.delete(`${API_HOST}/api/question/${payload.id}`, headers)
     .map(res => res.response)
     .map(() => ({
       type: ActionTypes.DELETE_QUESTION_SUCCESS,
@@ -100,7 +100,7 @@ export const updateQuestion = action$ => action$
   .ofType(ActionTypes.UPDATE_QUESTION)
   .map(signRequest)
   .switchMap(({headers, payload}) => Observable
-    .ajax.post(`http://localhost:8080/api/question/${payload.id}`, payload, headers)
+    .ajax.post(`${API_HOST}/api/question/${payload.id}`, payload, headers)
     .map(res => res.response)
     .map(question => ({
       type: ActionTypes.UPDATE_QUESTION_SUCCESS,
